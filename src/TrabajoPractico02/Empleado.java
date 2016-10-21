@@ -66,6 +66,10 @@ public abstract class Empleado {
 	
 	public abstract void setSbruto(float f);
 
+	public abstract float getSbruto();
+	
 	public abstract void setSneto(float f);
+	
+	public abstract float getSneto();	
 	
 }

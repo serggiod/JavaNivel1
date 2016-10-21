@@ -1,6 +1,7 @@
 package TrabajoPractico02;
 import  TrabajoPractico02.Empleado;
 import  TrabajoPractico02.Constantes;
+import  TrabajoPractico02.Servicio;
 
 public class Directivo extends Empleado{
 	
@@ -9,11 +10,12 @@ public class Directivo extends Empleado{
 
 	public Directivo(int l, String n, String a, String ec, String s, String f) {
 		super(l, n, a, ec, s, f);
-		float bruto   = Constantes.BASICO + Constantes.ADDDIRECTIVOF;
-		if(this.getEstadoCivil()==Constantes.CASADO) bruto = bruto + ((bruto *Constantes.ADDCASADOP) /100);
-		float descLey = ((bruto *Constantes.DELJUBILATORIOP) /100) + ((bruto *Constantes.DELSEGUROVP) /100);
-		this.setSbruto(bruto);
-		this.setSneto(bruto -descLey);
+		this.setSbruto(Constantes.BASICO);
+		this.setSneto(Constantes.BASICO);
+		this.setSneto(Constantes.ADDDIRECTIVOF);
+		if(this.getEstadoCivil()==Constantes.CASADO) this.setSneto(Servicio.calculoPorcentual(this.getSbruto(),Constantes.ADDCASADOP));
+		this.setSneto((Servicio.calculoPorcentual(this.getSbruto(),Constantes.DELJUBILATORIOP)) *-1);
+		this.setSneto((Servicio.calculoPorcentual(this.getSbruto(),Constantes.DELSEGUROVP)) *-1);
 	}
 
 	@Override
@@ -33,13 +35,13 @@ public class Directivo extends Empleado{
 		return sbruto;
 	}
 	public void setSbruto(float sbruto) {
-		this.sbruto = sbruto;
+		this.sbruto += sbruto;
 	}
 	public float getSneto() {
 		return sneto;
 	}
 	public void setSneto(float sneto) {
-		this.sneto = sneto;
+		this.sneto += sneto;
 	}
 	
 	

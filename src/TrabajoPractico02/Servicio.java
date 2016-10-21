@@ -23,5 +23,9 @@ public class Servicio {
 		}
 	};
 	
-
+	public static float calculoPorcentual(float sueldo,float porcentaje){
+		float porcentual = (sueldo * porcentaje) /100;
+		return porcentual;
+	}
+	
 }
